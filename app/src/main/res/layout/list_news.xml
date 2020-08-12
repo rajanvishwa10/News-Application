@@ -71,7 +71,7 @@
                 android:id="@+id/time"
                 android:text="Time"
                 android:textColor="@android:color/black"
-                android:textStyle="bold"
+                android:textStyle="bold|italic"
                 android:layout_marginStart="250dp"
                 android:layout_marginTop="257dp"/>
         </FrameLayout>
