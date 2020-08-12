@@ -15,6 +15,7 @@ import com.example.newsapplication.Client;
 import com.example.newsapplication.R;
 import com.example.newsapplication.parameter.Articles;
 import com.example.newsapplication.parameter.Headlines;
+import com.example.newsapplication.parameter.Source;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -33,6 +34,7 @@ public class MainFragment extends Fragment {
     View view;
     final String API_KEY = "ae7f3c29265f4d3c8b0039def161b648";
     List<Articles> articles = new ArrayList<>();
+    List<Source> sources = new ArrayList<>();
     // TODO: Rename and change types of parameters
     private String mParam1;
     private String mParam2;
@@ -89,13 +91,14 @@ public class MainFragment extends Fragment {
         call.enqueue(new Callback<Headlines>() {
             @Override
             public void onResponse(Call<Headlines> call, Response<Headlines> response) {
-                if(response.isSuccessful() && response.body().getArticles()!= null){
+                if(response.isSuccessful() && response.body().getArticles()!= null ){
                     articles.clear();
                     articles = response.body().getArticles();
                     newsAdapter = new NewsAdapter(getContext(),articles);
                     recyclerView.setAdapter(newsAdapter);
                 }
             }
+
 
             @Override
             public void onFailure(Call<Headlines> call, Throwable t) {

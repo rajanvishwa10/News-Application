@@ -13,6 +13,7 @@ import androidx.cardview.widget.CardView;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.newsapplication.parameter.Articles;
+import com.example.newsapplication.parameter.Source;
 import com.squareup.picasso.Picasso;
 
 import java.util.List;
@@ -32,12 +33,20 @@ public class NewsAdapter extends RecyclerView.Adapter<NewsAdapter.ViewHolder> {
         return new ViewHolder(view);
     }
 
+
     @Override
     public void onBindViewHolder(@NonNull NewsAdapter.ViewHolder holder, int position) {
         final Articles art = articles.get(position);
         final String url = art.getUrl();
         holder.newsTitle.setText(art.getTitle());
-        holder.newsDate.setText(art.getPublishedAt());
+        String publishedAt = art.getPublishedAt();
+        String[] parts = publishedAt.split("T");
+        String part1 = parts[0];
+        String part2 = parts[1];
+        String time = part2.substring(0,part2.length()-1);
+        holder.newsDate.setText(part1);
+        holder.time.setText(time);
+        holder.author.setText(art.getAuthor());
         String imageUrl = art.getUrlToImage();
         Picasso.get().load(imageUrl).into(holder.imageView);
         holder.cardView.setOnClickListener(new View.OnClickListener() {
@@ -56,13 +65,15 @@ public class NewsAdapter extends RecyclerView.Adapter<NewsAdapter.ViewHolder> {
     }
 
     public class ViewHolder extends RecyclerView.ViewHolder {
-        TextView newsTitle, newsDate;
+        TextView newsTitle, newsDate, author, time;
         ImageView imageView;
         CardView cardView;
         public ViewHolder(@NonNull View itemView) {
             super(itemView);
             newsDate = itemView.findViewById(R.id.newsDate);
             newsTitle = itemView.findViewById(R.id.newsTitle);
+            author = itemView.findViewById(R.id.author);
+            time = itemView.findViewById(R.id.time);
             imageView = itemView.findViewById(R.id.image);
             cardView = itemView.findViewById(R.id.cardview);
         }
