@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/linearlayout"
+    android:layout_width="match_parent"
+
+    android:layout_height="wrap_content">
+
+    <androidx.cardview.widget.CardView
+        android:id="@+id/cardview"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentTop="true"
+        android:layout_marginLeft="10dp"
+        android:layout_marginTop="10dp"
+        android:layout_marginRight="10dp"
+        android:padding="5dp">
+
+        <FrameLayout
+            android:layout_width="match_parent"
+            android:layout_height="287dp"
+            android:background="@drawable/news_background">
+
+            <ImageView
+                android:id="@+id/image"
+                android:layout_width="match_parent"
+                android:paddingLeft="5dp"
+                android:layout_marginRight="5dp"
+                android:layout_height="193dp"
+                android:layout_marginTop="10dp" />
+
+            <TextView
+                android:id="@+id/newsTitle"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="20dp"
+                android:layout_marginTop="205dp"
+                android:layout_marginEnd="10dp"
+                android:text="Title"
+                android:textColor="@android:color/black"
+                android:textSize="15sp" />
+
+            <TextView
+                android:id="@+id/newsDate"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="bottom"
+                android:layout_marginStart="20dp"
+                android:layout_marginTop="-5dp"
+                android:layout_marginBottom="10dp"
+                android:text="Date"
+                android:textColor="@android:color/black"
+                android:textSize="12sp" />
+        </FrameLayout>
+    </androidx.cardview.widget.CardView>
+
+</RelativeLayout>

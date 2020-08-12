@@ -1,0 +1,15 @@
+<resources>
+    <string name="app_name">News Application</string>
+    <string name="newsdetail">News Detail</string>
+    <string name="tab_text_0">POPULAR</string>
+    <string name="tab_text_1">Buzzfeed</string>
+    <string name="tab_text_2">CNN</string>
+    <string name="tab_text_3">ESPN</string>
+    <string name="tab_text_4">FORTUNE</string>
+    <string name="tab_text_5">FOXNEWS</string>
+    <string name="tab_text_6">BBC</string>
+    <string name="tab_text_7">SKY NEWS</string>
+    <string name="tab_text_8">MSNBC</string>
+    <string name="tab_text_9">Al Jazeera</string>
+    <string name="tab_text_10">Euronews</string>
+</resources>
