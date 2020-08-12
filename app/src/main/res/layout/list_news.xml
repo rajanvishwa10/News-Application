@@ -71,9 +71,9 @@
                 android:id="@+id/time"
                 android:text="Time"
                 android:textColor="@android:color/black"
-                android:textStyle="bold|italic"
+                android:textStyle="bold"
                 android:layout_marginStart="250dp"
-                android:layout_marginTop="257dp"/>
+                android:layout_marginTop="258dp"/>
         </FrameLayout>
     </androidx.cardview.widget.CardView>
 
