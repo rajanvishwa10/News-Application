@@ -102,7 +102,7 @@ public class MainFragment extends Fragment {
 
             @Override
             public void onFailure(Call<Headlines> call, Throwable t) {
-                Toast.makeText(getActivity().getApplicationContext(), "Check your Internet Connection", Toast.LENGTH_SHORT).show();
+                Toast.makeText(getContext(), "Check your Internet Connection", Toast.LENGTH_SHORT).show();
             }
         });
     }
