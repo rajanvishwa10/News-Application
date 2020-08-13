@@ -85,16 +85,14 @@ public class AppleFragment extends Fragment{
         String[] parts = string.split(" ");
         String date = parts[0]; // 004
         String part2 = parts[1];
-        String time = part2.substring(0, part2.length() - 1);
-        //final String date = part1;
         final String q = "apple";
-        final String sort = "sortBy";
+        final String sort = "popularity";
         fetchJSON(q, date, sort, API_KEY);
         return view;
     }
 
     public void fetchJSON(String q, String date, String sort, String api_key) {
-        Call<Headlines> call = Client.getInstance().getApi2().geteverything("apple", date, sort, api_key);
+        Call<Headlines> call = Client.getInstance().getApi2().geteverything("apple", "2020-07-13",  sort, api_key);
         call.enqueue(new Callback<Headlines>() {
             @Override
             public void onResponse(Call<Headlines> call, Response<Headlines> response) {

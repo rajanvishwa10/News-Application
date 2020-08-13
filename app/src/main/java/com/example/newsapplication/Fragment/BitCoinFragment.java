@@ -86,13 +86,13 @@ public class BitCoinFragment extends Fragment {
         String[] parts = string.split(" ");
         String date = parts[0]; // 004
         final String q = "bitcoin";
-        final String sort = "sortBy";
+        final String sort = "publishedAt";
         fetchJSON(q, date, sort, API_KEY);
         return view;
     }
 
     public void fetchJSON(String q, String date, String sort, String api_key) {
-        Call<Headlines> call = Client.getInstance().getApi2().geteverything(q, date , sort, api_key);
+        Call<Headlines> call = Client.getInstance().getApi2().geteverything(q, "2020-07-13" , sort, api_key);
         call.enqueue(new Callback<Headlines>() {
             @Override
             public void onResponse(Call<Headlines> call, Response<Headlines> response) {

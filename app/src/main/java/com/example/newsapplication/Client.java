@@ -29,5 +29,4 @@ public class Client {
     public Interface4 getApi4(){
         return retrofit.create(Interface4.class);
     }
-
 }
