@@ -10,7 +10,15 @@ import androidx.fragment.app.FragmentPagerAdapter;
 
 import com.example.newsapplication.Fragment.BitCoinFragment;
 import com.example.newsapplication.Fragment.BusinessFragment;
+import com.example.newsapplication.Fragment.AppleFragment;
+import com.example.newsapplication.Fragment.TechCrunchFragment;
+import com.example.newsapplication.Fragment.EntertainmentFragment;
+import com.example.newsapplication.Fragment.HealthFragment;
 import com.example.newsapplication.Fragment.MainFragment;
+import com.example.newsapplication.Fragment.ScienceFragment;
+import com.example.newsapplication.Fragment.SportsFragment;
+import com.example.newsapplication.Fragment.TechnologyFragment;
+import com.example.newsapplication.Fragment.GlobalnewsFragment;
 import com.example.newsapplication.R;
 
 /**
@@ -37,34 +45,34 @@ public class SectionsPagerAdapter extends FragmentPagerAdapter {
                 fragment = new MainFragment();
                 break;
             case 1:
-                fragment = new BitCoinFragment();
+                fragment = new GlobalnewsFragment();
                 break;
             case 2:
                 fragment = new BusinessFragment();
                 break;
             case 3:
-                fragment = new MainFragment();
+                fragment = new SportsFragment();
                 break;
             case 4:
-                fragment = new MainFragment();
+                fragment = new EntertainmentFragment();
                 break;
             case 5:
-                fragment = new MainFragment();
+                fragment = new ScienceFragment();
                 break;
             case 6:
-                fragment = new MainFragment();
+                fragment = new TechnologyFragment();
                 break;
             case 7:
-                fragment = new MainFragment();
+                fragment = new HealthFragment();
                 break;
             case 8:
-                fragment = new MainFragment();
+                fragment = new TechCrunchFragment();
                 break;
             case 9:
-                fragment = new MainFragment();
+                fragment = new AppleFragment();
                 break;
             case 10:
-                fragment = new MainFragment();
+                fragment = new BitCoinFragment();
                 break;
         }
         return fragment;

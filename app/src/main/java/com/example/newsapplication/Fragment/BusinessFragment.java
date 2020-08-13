@@ -31,7 +31,7 @@ import retrofit2.Callback;
 import retrofit2.Response;
 
 
-public class BusinessFragment extends Fragment implements SwipeRefreshLayout.OnRefreshListener {
+public class BusinessFragment extends Fragment {
     private static final String ARG_PARAM1 = "param1";
     private static final String ARG_PARAM2 = "param2";
     RecyclerView recyclerView;
@@ -50,15 +50,6 @@ public class BusinessFragment extends Fragment implements SwipeRefreshLayout.OnR
         // Required empty public constructor
     }
 
-    /**
-     * Use this factory method to create a new instance of
-     * this fragment using the provided parameters.
-     *
-     * @param param1 Parameter 1.
-     * @param param2 Parameter 2.
-     * @return A new instance of fragment ChatFragment.
-     */
-    // TODO: Rename and change types and number of parameters
     public static com.example.newsapplication.Fragment.BusinessFragment newInstance(String param1, String param2) {
         com.example.newsapplication.Fragment.BusinessFragment fragment = new com.example.newsapplication.Fragment.BusinessFragment();
         Bundle args = new Bundle();
@@ -82,11 +73,8 @@ public class BusinessFragment extends Fragment implements SwipeRefreshLayout.OnR
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        view = inflater.inflate(R.layout.fragment_bit_coin, container, false);
+        view = inflater.inflate(R.layout.fragment_business, container, false);
         recyclerView = view.findViewById(R.id.recyclerview2);
-        swipeRefreshLayout = view.findViewById(R.id.swiperefresh2);
-        swipeRefreshLayout.setOnRefreshListener(this);
-
         recyclerView.setNestedScrollingEnabled(false);
         recyclerView.setHasFixedSize(false);
         layoutManager = new LinearLayoutManager(getContext(), LinearLayoutManager.VERTICAL, false);
@@ -98,8 +86,8 @@ public class BusinessFragment extends Fragment implements SwipeRefreshLayout.OnR
         return view;
     }
 
-    public void fetchJSON( String c, String sort, String api_key) {
-        Call<Headlines> call = Client.getInstance().getApi3().getHeadlines(c , sort, api_key);
+    public void fetchJSON(String c, String sort, String api_key) {
+        Call<Headlines> call = Client.getInstance().getApi3().getHeadlines(c, sort, api_key);
         call.enqueue(new Callback<Headlines>() {
             @Override
             public void onResponse(Call<Headlines> call, Response<Headlines> response) {
@@ -124,14 +112,6 @@ public class BusinessFragment extends Fragment implements SwipeRefreshLayout.OnR
         });
     }
 
-
-
-    @Override
-    public void onRefresh() {
-        Intent intent = new Intent(getContext(), MainActivity.class);
-        startActivity(intent);
-        getActivity().onBackPressed();
-    }
 }
 
 

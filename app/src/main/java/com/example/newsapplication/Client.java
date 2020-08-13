@@ -26,4 +26,8 @@ public class Client {
     public Interface3 getApi3(){
         return retrofit.create(Interface3.class);
     }
+    public Interface4 getApi4(){
+        return retrofit.create(Interface4.class);
+    }
+
 }

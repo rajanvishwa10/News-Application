@@ -21,9 +21,7 @@ import com.example.newsapplication.R;
 import com.example.newsapplication.parameter.Articles;
 import com.example.newsapplication.parameter.Headlines;
 
-import java.text.SimpleDateFormat;
 import java.util.ArrayList;
-import java.util.Date;
 import java.util.List;
 
 import retrofit2.Call;
@@ -31,7 +29,7 @@ import retrofit2.Callback;
 import retrofit2.Response;
 
 
-public class BitCoinFragment extends Fragment {
+public class GlobalnewsFragment extends Fragment  {
     private static final String ARG_PARAM1 = "param1";
     private static final String ARG_PARAM2 = "param2";
     RecyclerView recyclerView;
@@ -42,16 +40,16 @@ public class BitCoinFragment extends Fragment {
     final String API_KEY = "ae7f3c29265f4d3c8b0039def161b648";
     List<Articles> articles = new ArrayList<>();
 
-    // TODO: Rename and change types of parameters
     private String mParam1;
     private String mParam2;
 
-    public BitCoinFragment() {
+    public GlobalnewsFragment() {
         // Required empty public constructor
     }
 
-    public static com.example.newsapplication.Fragment.BitCoinFragment newInstance(String param1, String param2) {
-        com.example.newsapplication.Fragment.BitCoinFragment fragment = new com.example.newsapplication.Fragment.BitCoinFragment();
+
+    public static GlobalnewsFragment newInstance(String param1, String param2) {
+        GlobalnewsFragment fragment = new GlobalnewsFragment();
         Bundle args = new Bundle();
         args.putString(ARG_PARAM1, param1);
         args.putString(ARG_PARAM2, param2);
@@ -69,30 +67,24 @@ public class BitCoinFragment extends Fragment {
 
     }
 
+
     @RequiresApi(api = Build.VERSION_CODES.LOLLIPOP)
-    @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        view = inflater.inflate(R.layout.fragment_bit_coin, container, false);
+        view = inflater.inflate(R.layout.fragment_globalnews, container, false);
         recyclerView = view.findViewById(R.id.recyclerview2);
-
         recyclerView.setNestedScrollingEnabled(false);
         recyclerView.setHasFixedSize(false);
         layoutManager = new LinearLayoutManager(getContext(), LinearLayoutManager.VERTICAL, false);
         recyclerView.setLayoutManager(layoutManager);
-        SimpleDateFormat formatter = new SimpleDateFormat("yyyy/MM/dd HH:mm:ss");
-        Date dt = new Date();
-        String string = formatter.format(dt);
-        String[] parts = string.split(" ");
-        String date = parts[0]; // 004
-        final String q = "bitcoin";
-        final String sort = "sortBy";
-        fetchJSON(q, date, sort, API_KEY);
+
+        final String country = getCountry();
+        fetchJSON(country,API_KEY);
         return view;
     }
 
-    public void fetchJSON(String q, String date, String sort, String api_key) {
-        Call<Headlines> call = Client.getInstance().getApi2().geteverything(q, date , sort, api_key);
+    public void fetchJSON( String country, String api_key) {
+        Call<Headlines> call = Client.getInstance().getApi().getHeadlines(country, api_key);
         call.enqueue(new Callback<Headlines>() {
             @Override
             public void onResponse(Call<Headlines> call, Response<Headlines> response) {
@@ -115,6 +107,13 @@ public class BitCoinFragment extends Fragment {
                 progressDialog.show();
             }
         });
+    }
+
+    @RequiresApi(api = Build.VERSION_CODES.LOLLIPOP)
+    private String getCountry() {
+        String locale = getResources().getConfiguration().locale.getCountry();
+        //String country = locale.getCountry();
+        return locale.toLowerCase();
     }
 
 }

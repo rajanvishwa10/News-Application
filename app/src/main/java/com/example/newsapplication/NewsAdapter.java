@@ -47,7 +47,6 @@ public class NewsAdapter extends RecyclerView.Adapter<NewsAdapter.ViewHolder> {
         String time = part2.substring(0,part2.length()-1);
         holder.newsDate.setText(part1);
         holder.time.setText(time);
-        holder.author.setText(art.getAuthor());
         String imageUrl = art.getUrlToImage();
         Picasso.get().load(imageUrl).into(holder.imageView);
         holder.cardView.setOnClickListener(new View.OnClickListener() {
@@ -66,14 +65,13 @@ public class NewsAdapter extends RecyclerView.Adapter<NewsAdapter.ViewHolder> {
     }
 
     public static class ViewHolder extends RecyclerView.ViewHolder {
-        TextView newsTitle, newsDate, author, time;
+        TextView newsTitle, newsDate, time;
         ImageView imageView;
         CardView cardView;
         public ViewHolder(@NonNull View itemView) {
             super(itemView);
             newsDate = itemView.findViewById(R.id.newsDate);
             newsTitle = itemView.findViewById(R.id.newsTitle);
-            author = itemView.findViewById(R.id.author);
             time = itemView.findViewById(R.id.time);
             imageView = itemView.findViewById(R.id.image);
             cardView = itemView.findViewById(R.id.cardview);

@@ -3,8 +3,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".Fragment.SportsFragment">
-
+    tools:context=".Fragment.EntertainmentFragment">
 
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/recyclerview2"
@@ -13,6 +12,5 @@
             android:layout_marginTop="5dp"
             android:paddingTop="5dp"
             android:scrollbars="vertical" />
-
 
 </FrameLayout>
