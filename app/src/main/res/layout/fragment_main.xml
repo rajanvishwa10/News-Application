@@ -8,6 +8,8 @@ android:layout_height="match_parent"
 android:orientation="vertical"
 tools:context=".Fragment.MainFragment">
 
+
+
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/recyclerview"
         android:layout_width="match_parent"
@@ -15,5 +17,4 @@ tools:context=".Fragment.MainFragment">
         android:layout_marginTop="5dp"
         android:paddingTop="5dp"
         android:scrollbars="vertical" />
-
 </LinearLayout>
