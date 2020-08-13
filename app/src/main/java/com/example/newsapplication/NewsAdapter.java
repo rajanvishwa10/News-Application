@@ -1,5 +1,6 @@
 package com.example.newsapplication;
 
+import android.app.ProgressDialog;
 import android.content.Context;
 import android.content.Intent;
 import android.view.LayoutInflater;
@@ -38,7 +39,7 @@ public class NewsAdapter extends RecyclerView.Adapter<NewsAdapter.ViewHolder> {
     public void onBindViewHolder(@NonNull NewsAdapter.ViewHolder holder, int position) {
         final Articles art = articles.get(position);
         final String url = art.getUrl();
-        holder.newsTitle.setText(art.getTitle());
+        holder.newsTitle.setText(art.getTitle()+".");
         String publishedAt = art.getPublishedAt();
         String[] parts = publishedAt.split("T");
         String part1 = parts[0];
@@ -64,7 +65,7 @@ public class NewsAdapter extends RecyclerView.Adapter<NewsAdapter.ViewHolder> {
         return articles.size();
     }
 
-    public class ViewHolder extends RecyclerView.ViewHolder {
+    public static class ViewHolder extends RecyclerView.ViewHolder {
         TextView newsTitle, newsDate, author, time;
         ImageView imageView;
         CardView cardView;

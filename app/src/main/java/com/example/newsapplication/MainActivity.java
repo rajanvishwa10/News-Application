@@ -16,7 +16,6 @@ import android.view.View;
 import com.example.newsapplication.ui.main.SectionsPagerAdapter;
 
 public class MainActivity extends AppCompatActivity {
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);

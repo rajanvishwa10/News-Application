@@ -1,9 +1,9 @@
 <resources>
     <string name="app_name">News Application</string>
     <string name="newsdetail">News Detail</string>
-    <string name="tab_text_0">POPULAR</string>
-    <string name="tab_text_1">Buzzfeed</string>
-    <string name="tab_text_2">CNN</string>
+    <string name="tab_text_0">TOP HEADLINES</string>
+    <string name="tab_text_1">BITCOIN </string>
+    <string name="tab_text_2">BUSINESS</string>
     <string name="tab_text_3">ESPN</string>
     <string name="tab_text_4">FORTUNE</string>
     <string name="tab_text_5">FOXNEWS</string>
@@ -12,4 +12,6 @@
     <string name="tab_text_8">MSNBC</string>
     <string name="tab_text_9">Al Jazeera</string>
     <string name="tab_text_10">Euronews</string>
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
 </resources>

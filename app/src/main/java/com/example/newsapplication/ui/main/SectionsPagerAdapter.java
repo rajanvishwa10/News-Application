@@ -8,6 +8,8 @@ import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentPagerAdapter;
 
+import com.example.newsapplication.Fragment.BitCoinFragment;
+import com.example.newsapplication.Fragment.BusinessFragment;
 import com.example.newsapplication.Fragment.MainFragment;
 import com.example.newsapplication.R;
 
@@ -35,10 +37,10 @@ public class SectionsPagerAdapter extends FragmentPagerAdapter {
                 fragment = new MainFragment();
                 break;
             case 1:
-                fragment = new MainFragment();
+                fragment = new BitCoinFragment();
                 break;
             case 2:
-                fragment = new MainFragment();
+                fragment = new BusinessFragment();
                 break;
             case 3:
                 fragment = new MainFragment();

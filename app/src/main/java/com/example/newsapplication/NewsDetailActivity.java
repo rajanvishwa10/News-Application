@@ -2,6 +2,7 @@ package com.example.newsapplication;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.app.ProgressDialog;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
@@ -9,11 +10,13 @@ import android.webkit.WebView;
 import android.webkit.WebViewClient;
 
 public class NewsDetailActivity extends AppCompatActivity {
-    WebView webView;
+    private WebView webView;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_news_detail);
+
         Intent intent =getIntent();
         String url = intent.getStringExtra("url");
         webView = findViewById(R.id.webview);
@@ -23,6 +26,7 @@ public class NewsDetailActivity extends AppCompatActivity {
         webView.setScrollBarStyle(View.SCROLLBARS_INSIDE_OVERLAY);
         webView.setWebViewClient(new WebViewClient());
         webView.loadUrl(url);
+
         getSupportActionBar().setTitle("News Details");
         getSupportActionBar().setDisplayShowHomeEnabled(true);
         getSupportActionBar().setDisplayShowHomeEnabled(true);

@@ -14,21 +14,24 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 import androidx.swiperefreshlayout.widget.SwipeRefreshLayout;
 
+import com.example.newsapplication.Client;
 import com.example.newsapplication.MainActivity;
 import com.example.newsapplication.NewsAdapter;
-import com.example.newsapplication.Client;
 import com.example.newsapplication.R;
 import com.example.newsapplication.parameter.Articles;
 import com.example.newsapplication.parameter.Headlines;
 
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
 
-public class MainFragment extends Fragment implements SwipeRefreshLayout.OnRefreshListener {
+
+public class BitCoinFragment extends Fragment implements SwipeRefreshLayout.OnRefreshListener {
     private static final String ARG_PARAM1 = "param1";
     private static final String ARG_PARAM2 = "param2";
     RecyclerView recyclerView;
@@ -38,11 +41,12 @@ public class MainFragment extends Fragment implements SwipeRefreshLayout.OnRefre
     View view;
     final String API_KEY = "ae7f3c29265f4d3c8b0039def161b648";
     List<Articles> articles = new ArrayList<>();
+
     // TODO: Rename and change types of parameters
     private String mParam1;
     private String mParam2;
 
-    public MainFragment() {
+    public BitCoinFragment() {
         // Required empty public constructor
     }
 
@@ -55,8 +59,8 @@ public class MainFragment extends Fragment implements SwipeRefreshLayout.OnRefre
      * @return A new instance of fragment ChatFragment.
      */
     // TODO: Rename and change types and number of parameters
-    public static MainFragment newInstance(String param1, String param2) {
-        MainFragment fragment = new MainFragment();
+    public static com.example.newsapplication.Fragment.BitCoinFragment newInstance(String param1, String param2) {
+        com.example.newsapplication.Fragment.BitCoinFragment fragment = new com.example.newsapplication.Fragment.BitCoinFragment();
         Bundle args = new Bundle();
         args.putString(ARG_PARAM1, param1);
         args.putString(ARG_PARAM2, param2);
@@ -78,30 +82,40 @@ public class MainFragment extends Fragment implements SwipeRefreshLayout.OnRefre
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        view = inflater.inflate(R.layout.fragment_main, container, false);
-        recyclerView = view.findViewById(R.id.recyclerview);
-        swipeRefreshLayout = view.findViewById(R.id.swiperefresh);
+        view = inflater.inflate(R.layout.fragment_bit_coin, container, false);
+        recyclerView = view.findViewById(R.id.recyclerview2);
+        swipeRefreshLayout = view.findViewById(R.id.swiperefresh2);
         swipeRefreshLayout.setOnRefreshListener(this);
 
         recyclerView.setNestedScrollingEnabled(false);
         recyclerView.setHasFixedSize(false);
-        layoutManager = new LinearLayoutManager(getContext(),LinearLayoutManager.VERTICAL, false);
+        layoutManager = new LinearLayoutManager(getContext(), LinearLayoutManager.VERTICAL, false);
         recyclerView.setLayoutManager(layoutManager);
-
-        final String country = getCountry();
-        fetchJSON(country,API_KEY);
+        SimpleDateFormat formatter = new SimpleDateFormat("yyyy/MM/dd HH:mm:ss");
+        Date dt = new Date();
+        //System.out.println(formatter.format(date));
+        //System.out.println();
+        String string = formatter.format(dt);
+        String[] parts = string.split(" ");
+        String date = parts[0]; // 004
+        String part2 = parts[1];
+        String time = part2.substring(0,part2.length()-1);
+        //final String date = part1;
+        final String q = "bitcoin";
+        final String sort = "sortBy";
+        fetchJSON(q, date, sort, API_KEY);
         return view;
     }
 
-    public void fetchJSON(String country, String api_key){
-        Call<Headlines> call = Client.getInstance().getApi().getHeadlines(country,api_key);
+    public void fetchJSON(String q, String date, String sort, String api_key) {
+        Call<Headlines> call = Client.getInstance().getApi2().geteverything(q, date , sort, api_key);
         call.enqueue(new Callback<Headlines>() {
             @Override
             public void onResponse(Call<Headlines> call, Response<Headlines> response) {
-                if(response.isSuccessful() && response.body().getArticles()!= null ){
+                if (response.isSuccessful() && response.body().getArticles() != null) {
                     articles.clear();
                     articles = response.body().getArticles();
-                    newsAdapter = new NewsAdapter(getContext(),articles);
+                    newsAdapter = new NewsAdapter(getContext(), articles);
                     recyclerView.setAdapter(newsAdapter);
                 }
             }
@@ -119,12 +133,7 @@ public class MainFragment extends Fragment implements SwipeRefreshLayout.OnRefre
         });
     }
 
-    @RequiresApi(api = Build.VERSION_CODES.LOLLIPOP)
-    private String getCountry() {
-        String locale = getResources().getConfiguration().locale.getCountry();
-        //String country = locale.getCountry();
-        return locale.toLowerCase();
-    }
+
 
     @Override
     public void onRefresh() {
@@ -133,3 +142,5 @@ public class MainFragment extends Fragment implements SwipeRefreshLayout.OnRefre
         getActivity().onBackPressed();
     }
 }
+
+

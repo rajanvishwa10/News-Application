@@ -17,6 +17,13 @@ public class Client {
         return client;
     }
     public Interface getApi(){
+
         return retrofit.create(Interface.class);
+    }
+    public Interface2 getApi2(){
+        return retrofit.create(Interface2.class);
+    }
+    public Interface3 getApi3(){
+        return retrofit.create(Interface3.class);
     }
 }
