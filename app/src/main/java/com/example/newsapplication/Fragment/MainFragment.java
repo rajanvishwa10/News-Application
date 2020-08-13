@@ -28,7 +28,7 @@ import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
 
-public class MainFragment extends Fragment  {
+public class MainFragment extends Fragment implements SwipeRefreshLayout.OnRefreshListener {
     private static final String ARG_PARAM1 = "param1";
     private static final String ARG_PARAM2 = "param2";
     RecyclerView recyclerView;
@@ -71,6 +71,8 @@ public class MainFragment extends Fragment  {
                              Bundle savedInstanceState) {
         view = inflater.inflate(R.layout.fragment_main, container, false);
         recyclerView = view.findViewById(R.id.recyclerview);
+        swipeRefreshLayout = view.findViewById(R.id.swiperefresh);
+        swipeRefreshLayout.setOnRefreshListener(this);
         recyclerView.setNestedScrollingEnabled(false);
         recyclerView.setHasFixedSize(false);
         layoutManager = new LinearLayoutManager(getContext(),LinearLayoutManager.VERTICAL, false);
@@ -114,4 +116,10 @@ public class MainFragment extends Fragment  {
         return locale.toLowerCase();
     }
 
+    @Override
+    public void onRefresh() {
+        Intent intent = new Intent(getContext(), MainActivity.class);
+        startActivity(intent);
+        getActivity().onBackPressed();
+    }
 }

@@ -25,23 +25,20 @@
             android:id="@+id/tabs"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            app:tabIndicatorHeight="4dp"
-            app:tabMode="scrollable"
+            android:background="@android:color/white"
+            android:textAlignment="center"
             app:tabGravity="fill"
             app:tabIndicatorColor="?attr/colorPrimary"
-            android:background="@android:color/white"
-            app:tabTextColor="@android:color/black"
-            android:textAlignment="center"/>
+            app:tabIndicatorHeight="4dp"
+            app:tabMode="scrollable"
+            app:tabTextColor="@android:color/black" />
     </com.google.android.material.appbar.AppBarLayout>
-    <androidx.swiperefreshlayout.widget.SwipeRefreshLayout
-        android:id="@+id/swiperefresh"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent">
+
     <androidx.viewpager.widget.ViewPager
         android:id="@+id/view_pager"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         app:layout_behavior="@string/appbar_scrolling_view_behavior" />
-    </androidx.swiperefreshlayout.widget.SwipeRefreshLayout>
+
 
 </androidx.coordinatorlayout.widget.CoordinatorLayout>
