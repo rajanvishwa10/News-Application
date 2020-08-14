@@ -78,21 +78,21 @@ public class AppleFragment extends Fragment{
         recyclerView.setHasFixedSize(false);
         layoutManager = new LinearLayoutManager(getContext(), LinearLayoutManager.VERTICAL, false);
         recyclerView.setLayoutManager(layoutManager);
-//
-//        SimpleDateFormat formatter = new SimpleDateFormat("yyyy/MM/dd HH:mm:ss");
-//        Date dt = new Date();
-//        String string = formatter.format(dt);
-//        String[] parts = string.split(" ");
-//        String date = parts[0]; // 004
-//        String part2 = parts[1];
+
+        SimpleDateFormat formatter = new SimpleDateFormat("yyyy/MM/dd HH:mm:ss");
+        Date dt = new Date();
+        String string = formatter.format(dt);
+        String[] parts = string.split(" ");
+        String date = parts[0]; // 004
+        String part2 = parts[1];
         final String q = "apple";
         final String sort = "popularity";
-        fetchJSON(q,  sort, API_KEY);
+        fetchJSON(q, date, sort, API_KEY);
         return view;
     }
 
-    public void fetchJSON(String q,String sort, String api_key) {
-        Call<Headlines> call = Client.getInstance().getApi2().geteverything(q, "2020-08-12",  sort, api_key);
+    public void fetchJSON(String q,String date, String sort, String api_key) {
+        Call<Headlines> call = Client.getInstance().getApi2().geteverything(q, date,  sort, api_key);
         call.enqueue(new Callback<Headlines>() {
             @Override
             public void onResponse(Call<Headlines> call, Response<Headlines> response) {

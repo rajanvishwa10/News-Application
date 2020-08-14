@@ -92,7 +92,7 @@ public class BitCoinFragment extends Fragment {
     }
 
     public void fetchJSON(String q, String date, String sort, String api_key) {
-        Call<Headlines> call = Client.getInstance().getApi2().geteverything(q, "2020-07-13" , sort, api_key);
+        Call<Headlines> call = Client.getInstance().getApi2().geteverything(q, date , sort, api_key);
         call.enqueue(new Callback<Headlines>() {
             @Override
             public void onResponse(Call<Headlines> call, Response<Headlines> response) {
