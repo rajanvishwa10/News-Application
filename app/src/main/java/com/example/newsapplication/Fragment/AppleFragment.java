@@ -42,31 +42,6 @@ public class AppleFragment extends Fragment{
     final String API_KEY = "ae7f3c29265f4d3c8b0039def161b648";
     List<Articles> articles = new ArrayList<>();
 
-    // TODO: Rename and change types of parameters
-    private String mParam1;
-    private String mParam2;
-
-    public AppleFragment() {
-        // Required empty public constructor
-    }
-    public static AppleFragment newInstance(String param1, String param2) {
-        AppleFragment fragment = new AppleFragment();
-        Bundle args = new Bundle();
-        args.putString(ARG_PARAM1, param1);
-        args.putString(ARG_PARAM2, param2);
-        fragment.setArguments(args);
-        return fragment;
-    }
-
-    @Override
-    public void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        if (getArguments() != null) {
-            mParam1 = getArguments().getString(ARG_PARAM1);
-            mParam2 = getArguments().getString(ARG_PARAM2);
-        }
-
-    }
 
     @RequiresApi(api = Build.VERSION_CODES.LOLLIPOP)
     @Override
@@ -79,15 +54,25 @@ public class AppleFragment extends Fragment{
         layoutManager = new LinearLayoutManager(getContext(), LinearLayoutManager.VERTICAL, false);
         recyclerView.setLayoutManager(layoutManager);
 
+        swipeRefreshLayout = view.findViewById(R.id.swiperefresh);
+
         SimpleDateFormat formatter = new SimpleDateFormat("yyyy/MM/dd HH:mm:ss");
         Date dt = new Date();
         String string = formatter.format(dt);
         String[] parts = string.split(" ");
-        String date = parts[0]; // 004
+        final String date = parts[0]; // 004
         String part2 = parts[1];
         final String q = "apple";
         final String sort = "popularity";
         fetchJSON(q, date, sort, API_KEY);
+
+        swipeRefreshLayout.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
+            @Override
+            public void onRefresh() {
+                articles.clear();
+                fetchJSON(q,date,sort,API_KEY);
+            }
+        });
         return view;
     }
 
@@ -97,11 +82,13 @@ public class AppleFragment extends Fragment{
             @Override
             public void onResponse(Call<Headlines> call, Response<Headlines> response) {
                 if (response.isSuccessful() && response.body().getArticles() != null) {
+                    swipeRefreshLayout.setRefreshing(false);
                     articles.clear();
                     articles = response.body().getArticles();
                     newsAdapter = new NewsAdapter(getContext(), articles);
                     recyclerView.setAdapter(newsAdapter);
                 }
+                
             }
 
 

@@ -26,6 +26,7 @@ import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
+import me.everything.android.ui.overscroll.OverScrollDecoratorHelper;
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
@@ -80,14 +81,26 @@ public class BitCoinFragment extends Fragment {
         recyclerView.setHasFixedSize(false);
         layoutManager = new LinearLayoutManager(getContext(), LinearLayoutManager.VERTICAL, false);
         recyclerView.setLayoutManager(layoutManager);
+        OverScrollDecoratorHelper.setUpOverScroll(recyclerView, OverScrollDecoratorHelper.ORIENTATION_VERTICAL);
+        swipeRefreshLayout = view.findViewById(R.id.swiperefresh);
+
         SimpleDateFormat formatter = new SimpleDateFormat("yyyy/MM/dd HH:mm:ss");
         Date dt = new Date();
         String string = formatter.format(dt);
         String[] parts = string.split(" ");
-        String date = parts[0]; // 004
+        final String date = parts[0]; // 004
         final String q = "bitcoin";
         final String sort = "publishedAt";
         fetchJSON(q, date, sort, API_KEY);
+
+        swipeRefreshLayout.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
+            @Override
+            public void onRefresh() {
+                articles.clear();
+                newsAdapter.notifyDataSetChanged();
+                fetchJSON(q, date, sort, API_KEY);
+            }
+        });
         return view;
     }
 
@@ -101,6 +114,7 @@ public class BitCoinFragment extends Fragment {
                     articles = response.body().getArticles();
                     newsAdapter = new NewsAdapter(getContext(), articles);
                     recyclerView.setAdapter(newsAdapter);
+                    swipeRefreshLayout.setRefreshing(false);
                 }
             }
 

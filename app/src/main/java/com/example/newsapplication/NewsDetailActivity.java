@@ -9,14 +9,25 @@ import android.view.View;
 import android.webkit.WebView;
 import android.webkit.WebViewClient;
 
+import com.google.android.material.appbar.MaterialToolbar;
+
 public class NewsDetailActivity extends AppCompatActivity {
 
+    MaterialToolbar toolbar;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_news_detail);
         WebView webView;
+        toolbar = findViewById(R.id.toolbar);
+        toolbar.setNavigationOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                onBackPressed();
+            }
+        });
+
         Intent intent =getIntent();
         String url = intent.getStringExtra("url");
         webView = findViewById(R.id.webview);
@@ -27,8 +38,5 @@ public class NewsDetailActivity extends AppCompatActivity {
         webView.setWebViewClient(new WebViewClient());
         webView.loadUrl(url);
 
-        getSupportActionBar().setTitle("News Details");
-        getSupportActionBar().setDisplayShowHomeEnabled(true);
-        getSupportActionBar().setDisplayShowHomeEnabled(true);
     }
 }

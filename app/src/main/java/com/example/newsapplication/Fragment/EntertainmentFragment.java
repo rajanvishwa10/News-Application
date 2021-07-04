@@ -26,6 +26,7 @@ import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
+import me.everything.android.ui.overscroll.OverScrollDecoratorHelper;
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
@@ -80,10 +81,21 @@ public class EntertainmentFragment extends Fragment {
         recyclerView.setHasFixedSize(false);
         layoutManager = new LinearLayoutManager(getContext(), LinearLayoutManager.VERTICAL, false);
         recyclerView.setLayoutManager(layoutManager);
+        OverScrollDecoratorHelper.setUpOverScroll(recyclerView, OverScrollDecoratorHelper.ORIENTATION_VERTICAL);
+        swipeRefreshLayout = view.findViewById(R.id.swiperefresh);
 
         final String category = "entertainment";
         final String country = "in";
         fetchJSON(country, category, API_KEY);
+
+        swipeRefreshLayout.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
+            @Override
+            public void onRefresh() {
+                articles.clear();
+                newsAdapter.notifyDataSetChanged();
+                fetchJSON(country, category, API_KEY);
+            }
+        });
         return view;
     }
 
@@ -97,6 +109,7 @@ public class EntertainmentFragment extends Fragment {
                     articles = response.body().getArticles();
                     newsAdapter = new NewsAdapter(getContext(), articles);
                     recyclerView.setAdapter(newsAdapter);
+                    swipeRefreshLayout.setRefreshing(false);
                 }
             }
 

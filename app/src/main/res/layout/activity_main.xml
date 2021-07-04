@@ -14,9 +14,8 @@
         <TextView
             android:id="@+id/title"
             android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+            android:layout_height="?attr/actionBarSize"
             android:gravity="center"
-            android:minHeight="?actionBarSize"
             android:padding="@dimen/appbar_padding"
             android:text="@string/app_name"
             android:textAppearance="@style/TextAppearance.Widget.AppCompat.Toolbar.Title" />
@@ -25,19 +24,21 @@
             android:id="@+id/tabs"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:background="@android:color/white"
+            android:background="@color/colorPrimary"
             android:textAlignment="center"
-            app:tabGravity="fill"
-            app:tabIndicatorColor="?attr/colorPrimary"
+            app:tabGravity="center"
+            app:tabRippleColor="@android:color/white"
+            app:tabIndicatorColor="@android:color/white"
             app:tabIndicatorHeight="4dp"
             app:tabMode="scrollable"
-            app:tabTextColor="@android:color/black" />
+            app:tabTextColor="@android:color/white" />
     </com.google.android.material.appbar.AppBarLayout>
 
     <androidx.viewpager.widget.ViewPager
         android:id="@+id/view_pager"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
+        android:background="#FFF5F5F5"
         app:layout_behavior="@string/appbar_scrolling_view_behavior" />
 
 
